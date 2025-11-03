@@ -59,21 +59,21 @@ pipeline {
                     docker run -d --name backend \
                         --network ticketing-network \
                         -e DATABASE_URL=postgres://admin:admin123@postgres:5432/ticketingdb \
-                        -p 3003:3003 \
+                        -p 8000:80 \
                         ${BACKEND_IMAGE}
 
                     echo "🖥️ Starting Frontend container..."
                     docker run -d --name frontend \
                         --network ticketing-network \
                         -e REACT_APP_API_URL=http://backend:3003 \
-                        -p 3004:3000 \
+                        -p 3000:80 \
                         ${FRONTEND_IMAGE}
 
                     echo "🧑‍💼 Starting Admin container..."
                     docker run -d --name admin \
                         --network ticketing-network \
                         -e REACT_APP_API_URL=http://backend:3003 \
-                        -p 3005:3000 \
+                        -p 3001:80 \
                         ${ADMIN_IMAGE}
 
                     echo "🚀 All containers started successfully!"
