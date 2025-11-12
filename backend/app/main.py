@@ -95,15 +95,18 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Flow Track API")
 
-# CORS - Allow all origins for development
+# ✅ CORS Configuration for Azure Frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins for development
-    allow_credentials=False,  # Set to False when using allow_origins=["*"]
+    allow_origins=[
+        "https://zealous-mud-09cc77000.3.azurestaticapps.net",  # your frontend (Azure Static Web App)
+        "https://ticketing-tool-fkgggvcafjb2bnan.centralindia-01.azurewebsites.net",  # your backend itself
+        "http://localhost:3000",  # optional: for local testing
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Add validation error handler
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
