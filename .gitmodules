@@ -1,0 +1,3 @@
+[submodule "tickinting-tool"]
+    path = tickinting-tool
+    url = https://github.com/Mspawan/ticketing-tool_vt.git
