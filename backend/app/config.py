@@ -18,7 +18,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # PostgreSQL database connection
     # Format: postgresql+asyncpg://username:password@host:port/database_name
-    database_url: str = "postgresql+asyncpg://pawanadmin:Azure@12345@ticketingdbserver.postgres.database.azure.com:5432/postgres"
+    database_url: str = "postgresql+asyncpg://pawanadmin:Azure%4012345@ticketingdbserver.postgres.database.azure.com:5432/postgres"
     backend_host: str = "0.0.0.0"
     backend_port: int = 8000
 
